@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Halaman Menghitung Umur & Zodiak</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            background-image: url("Back.jpg");
+            background-size: cover;
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        h1 {
+            color: #007bff;
+            font-size: 24px;
+            margin: 0 0 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-text {
+            display: block;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        #umurResult,
+        #zodiakInfo {
+            text-align: left;
+            margin-top: 20px;
+            font-size: 18px;
+            border-left: 2px solid #007bff;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Menghitung Umur & Zodiak</h1>
+        <form id="umurForm">
+            <label>Masukkan tanggal lahir Anda (1-31):</label>
+            <input type="number" id="tanggal" min="1" max="31" required>
+            <br>
+
+            <label>Masukkan Bulan lahir Anda (1-12):</label>
+            <input type="number" id="bulan" min="1" max="12" required>
+            <br>
+
+            <label>Masukkan Tahun lahir Anda:</label>
+            <input type="number" id="tahun" required>
+            <br>
+
+            <label>Masukkan tanggal Hari ini (1-31):</label>
+            <input type="number" id="hari" min="1" max="31" required>
+            <br>
+
+            <label>Masukkan Bulan Sekarang (1-12):</label>
+            <input type="number" id="bln" min="1" max="12" required>
+            <br>
+
+            <label>Masukkan Tahun Sekarang:</label>
+            <input type="number" id="thn" required>
+            <br>
+
+            <button type="button" onclick="hitungUmur()">Hitung Umur & Zodiak</button>
+        </form>
+
+        <div id="umurResult"></div>
+        <div id="zodiakInfo"></div>
+    </div>
+
+    <script>
+        function hitungUmur() {
+            var tanggal = parseInt(document.getElementById("tanggal").value);
+            var bulan = parseInt(document.getElementById("bulan").value);
+            var tahun = parseInt(document.getElementById("tahun").value);
+            var hari = parseInt(document.getElementById("hari").value);
+            var bln = parseInt(document.getElementById("bln").value);
+            var thn = parseInt(document.getElementById("thn").value);
+
+            var umurTahun = thn - tahun;
+            var umurBulan = bln - bulan;
+            var sisaHari = hari - tanggal;
+
+            if (sisaHari < 0) {
+                sisaHari += 30;
+                umurBulan--;
+            }
+
+            if (umurBulan < 0) {
+                umurBulan += 12;
+                umurTahun--;
+            }
+
+            var umurResult = "Tanggal Lahir Anda: " + tanggal + " " + bulan + " " + tahun + "<br>" +
+                "UMUR ANDA ADALAH: " + umurTahun + " TAHUN " + umurBulan + " BULAN " + sisaHari + " HARI";
+
+            if (umurBulan === 0 && sisaHari === 0) {
+                umurResult += "<br>Selamat Ulang Tahun!!!!";
+            }
+
+            var zodiakResult = hitungZodiak(bulan, tanggal);
+
+            umurResult += "<br>" + zodiakResult;
+
+            document.getElementById("umurResult").innerHTML = umurResult;
+        }
+
+        function hitungZodiak(bulan, tanggal) {
+            var zodiak, sifatUmum, elemen, planetPenguasa;
+            if ((bulan === 3 && tanggal >= 21) || (bulan === 4 && tanggal <= 19)) {
+                zodiak = "Aries";
+                sifatUmum = "Pemberani & Bersemangat.";
+                elemen = "Api";
+                planetPenguasa = "Mars";
+            } else if ((bulan === 4 && tanggal >= 20) || (bulan === 5 && tanggal <= 20)) {
+                zodiak = "Taurus";
+                sifatUmum = "Teguh dan Praktis.";
+                elemen = "Bumi";
+                planetPenguasa = "Venus";
+            } else if ((bulan === 5 && tanggal >= 21) || (bulan === 6 && tanggal <= 20)) {
+                zodiak = "Gemini";
+                sifatUmum = "Komunikator dan sangat Adaptif.";
+                elemen = "Udara";
+                planetPenguasa = "Merkurius";
+            } else if ((bulan === 6 && tanggal >= 21) || (bulan === 7 && tanggal <= 22)) {
+                zodiak = "Cancer";
+                sifatUmum = "Penyayang dan memiliki perasaan yang dalam.";
+                elemen = "Air";
+                planetPenguasa = "Bulan";
+            } else if ((bulan === 7 && tanggal >= 23) || (bulan === 8 && tanggal <= 22)) {
+                zodiak = "Leo";
+                sifatUmum = "Pemimpin alami dan Percaya diri Sendiri.";
+                elemen = "Api";
+                planetPenguasa = "Matahari";
+            } else if ((bulan === 8 && tanggal >= 23) || (bulan === 9 && tanggal <= 22)) {
+                zodiak = "Virgo";
+                sifatUmum = "Pekerja Keras Dan Detail.";
+                elemen = "Bumi";
+                planetPenguasa = "Merkurius";
+            } else if ((bulan === 9 && tanggal >= 23) || (bulan === 10 && tanggal <= 22)) {
+                zodiak = "Libra";
+                sifatUmum = "Penuh Harmoni dan Mencintai Keadilan";
+                elemen = "Udara";
+                planetPenguasa = "Venus";
+            } else if ((bulan === 10 && tanggal >= 23) || (bulan === 11 && tanggal <= 21)) {
+                zodiak = "Scorpio";
+                sifatUmum = "Misterius dan Penuh Gairah.";
+                elemen = "Air";
+                planetPenguasa = "Pluto";
+            } else if ((bulan === 11 && tanggal >= 22) || (bulan === 12 && tanggal <= 21)) {
+                zodiak = "Sagittarius";
+                sifatUmum = "Petualangan Dan Bersemangat.";
+                elemen = "Api";
+                planetPenguasa = "Jupiter";
+            } else if ((bulan === 12 && tanggal >= 22) || (bulan === 1 && tanggal <= 19)) {
+                zodiak = "Capricorn";
+                sifatUmum = "Sangat Ambisius dan Praktis.";
+                elemen = "Bumi";
+                planetPenguasa = "Saturnus";
+            } else if ((bulan === 1 && tanggal >= 20) || (bulan === 2 && tanggal <= 18)) {
+                zodiak = "Aquarius";
+                sifatUmum = "Inovatif dan suka dengan Gagasan Baru.";
+                elemen = "Udara";
+                planetPenguasa = "Uranus";
+            } else {
+                zodiak = "Pisces";
+                sifatUmum = "Sangat Empatik dan Kreatif.";
+                elemen = "Air";
+                planetPenguasa = "Neptunus";
+            }
+
+            var zodiakResult = "<div id='zodiakInfo'><h2>Informasi Zodiak Anda:</h2><p><strong>Zodiak Anda:</strong> " + zodiak + "<br>" +
+                "<strong>Sifat Umum Zodiak " + zodiak + ":</strong> " + sifatUmum + "<br>" +
+                "<strong>Elemen Zodiak " + zodiak + ":</strong> " + elemen + "<br>" +
+                "<strong>Planet Penguasa Zodiak " + zodiak + ":</strong> " + planetPenguasa + "</p></div>";
+
+            document.getElementById("zodiakInfo").innerHTML = zodiakResult;
+        }
+    </script>
+</body>
+
+</html>

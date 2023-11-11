@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Halaman Utama</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: black; /* Ganti warna latar belakang ke hitam */
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            background-color: #fff;
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #007bff;
+            font-size: 24px;
+            margin: 0 0 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 50%; /* Membuat tombol menjadi bulat */
+            width: 150px; /* Atur lebar dan tinggi sesuai kebutuhan */
+            height: 150px;
+            text-align: center;
+            line-height: 150px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-text {
+            display: block;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        #umurResult, #zodiakInfo {
+            text-align: left;
+            margin-top: 20px;
+            font-size: 18px;
+            border-left: 2px solid #007bff; /* Garis samping di sebelah kiri teks */
+            padding-left: 10px; /* Jarak dari garis samping ke teks */
+        }
+
+        #gambarLatar {
+            cursor: pointer;
+        }
+
+        #gambarLatar img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#container">
+        <div id="gambarLatar">
+            <img src="ft.png" alt="Klik untuk memperbesar">
+        </div>
+    </a>
+
+    <button><a href="halaman.html" id="bukaHalamanButton" class="button-text">Buka Halaman Umur & Zodiak</a></button>
+</body>
+
+</html>
